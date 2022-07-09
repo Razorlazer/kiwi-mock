@@ -1,72 +1,56 @@
 import * as React from 'react';
-import { styled } from '@mui/material/styles';
+import { useSelector, useDispatch } from 'react-redux';
 import AppBar from '@mui/material/AppBar';
-import Box from '@mui/material/Box';
-import Toolbar from '@mui/material/Toolbar';
 import { Container, Grid, Divider, Button } from '@mui/material';
-import SelectInput from '../../sharedComponents/SelectInput';
+import Stack from '@mui/material/Stack';
+
+import PriceSlider from '../../sharedComponents/PriceSlider';
+import { selectLocations } from '../../store/slices/locationsSlice';
+import { fetchFlightList } from '../../store/slices/flightsSlice';
+import LocationSelector from './LocationsSelector';
 import DatePicker from '../../sharedComponents/DatePicker';
 import Toggle from '../../sharedComponents/Toggle';
-import Stack from '@mui/material/Stack';
-import PriceSlider from '../../sharedComponents/PriceSlider';
-
-const StyledToolbar = styled(Toolbar)(({ theme }) => ({
-    alignItems: 'center',
-    justifyContent: 'center',
-    backgroundColor: '#fff',
-    paddingTop: theme.spacing(6),
-    paddingBottom: theme.spacing(2),
-    // Override media queries injected by theme.mixins.toolbar
-    '@media all': {
-        minHeight: 128,
-    },
-}));
 
 const SearchPanel = () => {
-    return (<Box sx={{ flexGrow: 1 }}>
-        <AppBar position="static" color="inherit">
+    
+    const dispatch = useDispatch();
+    const { departureLocation , destinationLocation } = useSelector(selectLocations);
+    //console.log(departureLocation, destinationLocation);
+    const fetchFlights =() => {
+        dispatch(fetchFlightList());
+    };
+
+    return (<AppBar position="static" color="inherit">
             <Container maxWidth="lg">
-                <StyledToolbar>
-                    <Stack 
-                        spacing={2} 
-                        alignSelf={'center'} 
-                        divider={<Divider orientation="row" flexItem />}
-                        direction="column"
-                        justifyContent="space-evenly"
-                        alignItems="center"
+                    <Stack
+                        mt={2}
+                        spacing={2}
+                        width={'100%'}
+                        divider={<Divider orientation="horizontal" flexItem />}
                     >
-                        <Grid container spacing={2} alignItems="center"
-                            justifyContent="center" >
-                            <Grid item>
-                                <SelectInput label={'From'} />
-                            </Grid>
-                            <Grid item>
-                                <SelectInput label={'To'} />
-                            </Grid>
-                            <Grid item>
+                        <Grid container columnSpacing={2} direction={'row'}>
+                            <LocationSelector />
+                            <Grid item lg={3} md={3} sm={12}>
                                 <DatePicker label={'Departure'} />
                             </Grid>
-                            <Grid item>
+                            <Grid item lg={3} md={3} sm={12}>
                                 <DatePicker label={'Return'} />
                             </Grid>
-                            <Grid item>   
-                                <Button color={'success'} variant="outlined">Search</Button>
-                            </Grid>
                         </Grid>
-                        <Grid container alignContent={'space-between'} flexWrap={'wrap'} justifyContent={'space-between'}>
+                        <Grid container justifyContent="space-between">
                             <Grid item>
-                                <Toggle/>
+                                <Toggle />
                             </Grid>
                             <Grid item>
-                                <PriceSlider/>
+                                <PriceSlider />
+                            </Grid>
+                            <Grid>
+                                <Button color={'success'} variant="outlined" onClick={fetchFlights}>Search</Button>
                             </Grid>
                         </Grid>
                     </Stack>
-
-                </StyledToolbar>
             </Container>
-        </AppBar>
-    </Box>)
+        </AppBar>)
 }
 
 export default SearchPanel;
