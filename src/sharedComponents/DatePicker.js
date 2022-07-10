@@ -4,7 +4,7 @@ import { AdapterDateFns } from '@mui/x-date-pickers/AdapterDateFns';
 import { LocalizationProvider } from '@mui/x-date-pickers/LocalizationProvider';
 import { DatePicker as MuiDatePicker } from '@mui/x-date-pickers/DatePicker';
 
-const DatePicker = ({ label, defaultValue = null, onChange }) => {
+const DatePicker = ({ label, defaultValue = null, onChange, minDate  }) => {
     const [value, setValue] = React.useState(defaultValue);
 
     React.useEffect(() => {
@@ -21,6 +21,8 @@ const DatePicker = ({ label, defaultValue = null, onChange }) => {
                     setValue(newValue);
                 }}
                 renderInput={(params) => <TextField {...params} />}
+                minDate={minDate}
+                disableHighlightToday={minDate}
             />
         </LocalizationProvider>
     );

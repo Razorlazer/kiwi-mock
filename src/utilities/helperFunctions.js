@@ -11,8 +11,9 @@ export const buildURLParams = (params = {})=>{
     return urlParams.join('&');
 };
 
-export const createLocationSelectionList = ({ locations }) => {
-    const mappedLocations = locations.map(location => ({
+export const createLocationSelectionList = ({ locations }, state) => {
+    const mappedLocations = locations.filter(location => location.code !== state.destinationLocation && location.code!== state.departureLocation)
+    .map(location => ({
         id: location.id,
         code: location.code,
         label: location.name,

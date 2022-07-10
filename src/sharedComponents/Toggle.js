@@ -31,7 +31,7 @@ const Toggle = ({ toggleOptions = [] , defaultValue = 'M', onChange }) => {
                 '& > :not(style) + :not(style)': { mt: 2 },
             }}
         >
-            <ToggleButtonGroup size="small" value={value} onChange={handleChange} exclusive={true}>
+            <ToggleButtonGroup color='primary' size="small" value={value} onChange={handleChange} exclusive={true}>
                 {options}
             </ToggleButtonGroup>
         </Box>

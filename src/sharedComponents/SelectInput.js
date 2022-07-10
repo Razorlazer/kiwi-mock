@@ -1,28 +1,13 @@
 import * as React from 'react';
-import { useSelector } from 'react-redux';
 import Box from '@mui/material/Box';
 import TextField from '@mui/material/TextField';
 import Autocomplete from '@mui/material/Autocomplete';
 import FormControl from '@mui/material/FormControl';
-import { selectLocations } from '../store/slices/locationsSlice';
 
-const SelectInput = ({ label = '', defaultValue, onChange, onSearchChange }) => {
-    const { locationsList, status } = useSelector(selectLocations);
-    const [value, setValue] = React.useState(defaultValue);
-
-    React.useEffect(() => {
-
-        onChange(value);
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-    }, [value]);
-
+const SelectInput = ({ label = '', defaultValue, onChange, onSearchChange, departureList, destinationList }) => {
+    
     const renderLocationBox = (props, option) => {
         const countryCode = option?.country ? option.country.code : option?.city.country.code;
-
-        if(status === 'loading') {
-            return 'Loading...'
-        }
-        
         return (
             <Box component="li" sx={{ '& > img': { mr: 2, flexShrink: 0 } }} {...props}>
                 <img
@@ -53,15 +38,14 @@ const SelectInput = ({ label = '', defaultValue, onChange, onSearchChange }) => 
             <FormControl fullWidth>
                 <Autocomplete
                     disablePortal
-                    value={value}
+                    value={defaultValue}
                     id="location-input"
-                    options={locationsList}
+                    options={departureList || destinationList}
                     renderOption={renderLocationBox}
                     onChange={(event, newValue) => {
-                        console.log(newValue, 'newValue');
-                        setValue(newValue.code);
+                        onChange(newValue.code);
                     }}
-                    inputValue={value}
+                    inputValue={defaultValue}
                     onInputChange={(event, newInputValue) => {
                         onSearchChange(newInputValue);
                     }}

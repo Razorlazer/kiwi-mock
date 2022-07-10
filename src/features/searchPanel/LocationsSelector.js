@@ -1,4 +1,3 @@
-/* eslint-disable react-hooks/exhaustive-deps */
 import * as React from 'react';
 import { Grid, } from '@mui/material';
 import debounce from 'lodash/debounce';
@@ -7,7 +6,8 @@ import { useDispatch, useSelector } from 'react-redux';
 import SelectInput from '../../sharedComponents/SelectInput';
 import {
     selectLocations,
-    fetchLocationsList,
+    fetchDepartureLocationsList,
+    fetchDestinationLocationsList,
     changeDestinationaLocation,
     changeDepartureLocation
 } from '../../store/slices/locationsSlice';
@@ -15,22 +15,30 @@ import {
 
 const LocationsSelector = ()=>{
     const dispatch = useDispatch();
-    const { searchParams } = useSelector(selectLocations);
-    const [searchString, setSearchString] = React.useState();
-    
-    const fetchLocations = (searchKey) => {
-        dispatch(fetchLocationsList({ ...searchParams, term: searchKey ? searchKey : searchParams.term }));
+    const { searchParams, departureLocationsList, destinationLocationsList } = useSelector(selectLocations);
+    const [searchDepartureString, setSearchDepartureString] = React.useState();
+    const [searchDestinationString, setSearchDestincationString] = React.useState();
+
+    const fetchDepartureLocations = (searchKey) => {
+        dispatch(fetchDepartureLocationsList({ ...searchParams, term: searchKey ? searchKey : searchParams.term }));
+    }
+    const fetchDestinationLocations = (searchKey) => {
+        dispatch(fetchDestinationLocationsList({ ...searchParams, term: searchKey ? searchKey : searchParams.term }));
     }
 
-    const [searchLocation] = React.useState(() =>
-        debounce(value => fetchLocations(value), 400)
+
+    const [searchDepartureLocation] = React.useState(() =>
+        debounce(value => fetchDepartureLocations(value), 400)
     );
 
-    React.useEffect(() => searchLocation(searchString), [searchString]);
+    const [searchDestinationLocation] = React.useState(() =>
+        debounce(value => fetchDestinationLocations(value), 400)
+    );
 
+    React.useEffect(() => searchDepartureLocation(searchDepartureString), [searchDepartureString]);
+    React.useEffect(() => searchDestinationLocation(searchDestinationString), [searchDestinationString]);
 
     const changeDestinationParams = (location) => {
-        console.log(location);
         dispatch(changeDestinationaLocation(location));
     };
 
@@ -40,10 +48,10 @@ const LocationsSelector = ()=>{
 
     return(<>
         <Grid item lg={3} md={3} sm={12}>
-            <SelectInput label={'From'} onChange={changeDepartureParams} onSearchChange={setSearchString}/>
+            <SelectInput label={'From'} onChange={changeDepartureParams} onSearchChange={setSearchDepartureString} departureList={departureLocationsList}/>
         </Grid>
         <Grid item lg={3} md={3} sm={12}>
-            <SelectInput label={'To'} onChange={changeDestinationParams} onSearchChange={setSearchString} />
+            <SelectInput label={'To'} onChange={changeDestinationParams} onSearchChange={setSearchDestincationString} destinationList={destinationLocationsList}/>
         </Grid>
     </>);
 };
