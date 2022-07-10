@@ -1,42 +1,43 @@
 import * as React from 'react';
-import { Stack } from '@mui/material';
+import { useSelector } from 'react-redux';
 import BottomNavigation from '@mui/material/BottomNavigation';
 import BottomNavigationAction from '@mui/material/BottomNavigationAction';
-import FolderIcon from '@mui/icons-material/Folder';
-import RestoreIcon from '@mui/icons-material/Restore';
-import FavoriteIcon from '@mui/icons-material/Favorite';
-import LocationOnIcon from '@mui/icons-material/LocationOn';
+import Euro from '@mui/icons-material/Euro';
+import AccessTime from '@mui/icons-material/AccessTime';
+import ConnectingAirports from '@mui/icons-material/ConnectingAirports';
 import Paper from '@mui/material/Paper';
+import { selectFlights } from '../../store/slices/flightsSlice';
 
 const BestFlights = () => {
-    const [value, setValue] = React.useState('recents');
+    const [value, setValue] = React.useState('price');
+    const { flightList } = useSelector(selectFlights);
 
     const handleChange = (event, newValue) => {
         setValue(newValue);
     };
 
-    return (
+    const bestFlights = flightList?.best_results ? flightList.best_results[0] : {};  
+    
+    return flightList.best_results ? (
         <Paper elevation={1} >
-            <BottomNavigation value={value} onChange={handleChange}>
+            <BottomNavigation value={value} onChange={handleChange} showLabels>
                 <BottomNavigationAction
-                    label="Recents"
-                    value="recents"
-                    icon={<RestoreIcon />}
+                    label={`Cheapest: ${bestFlights.price}`}
+                    value="price"
+                    icon={<Euro />}
                 />
                 <BottomNavigationAction
-                    label="Favorites"
-                    value="favorites"
-                    icon={<FavoriteIcon />}
+                    label={`Fastest: ${bestFlights.duration}`}
+                    value="duration"
+                    icon={<AccessTime />}
                 />
                 <BottomNavigationAction
-                    label="Nearby"
+                    label="Transfer: direct"
                     value="nearby"
-                    icon={<LocationOnIcon />}
+                    icon={<ConnectingAirports />}
                 />
-                <BottomNavigationAction label="Folder" value="folder" icon={<FolderIcon />} />
             </BottomNavigation>
-        </Paper>
-    )
+        </Paper>) : <></>
 };
 
 export default BestFlights;

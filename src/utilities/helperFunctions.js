@@ -22,4 +22,10 @@ export const createLocationSelectionList = ({ locations }) => {
     }));
 
     return mappedLocations;
-}
+};
+
+export const timeEpochUTCtoLocal = (dtime) => {
+    var d = new Date(0); // The 0 there is the key, which sets the date to the epoch
+    d.setUTCSeconds(dtime);
+    return d.toLocaleString();
+} 
