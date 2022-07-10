@@ -30,6 +30,7 @@ const LocationsSelector = ()=>{
 
 
     const changeDestinationParams = (location) => {
+        console.log(location);
         dispatch(changeDestinationaLocation(location));
     };
 

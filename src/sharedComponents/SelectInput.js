@@ -4,7 +4,6 @@ import Box from '@mui/material/Box';
 import TextField from '@mui/material/TextField';
 import Autocomplete from '@mui/material/Autocomplete';
 import FormControl from '@mui/material/FormControl';
-import Skeleton from '@mui/material/Skeleton';
 import { selectLocations } from '../store/slices/locationsSlice';
 
 const SelectInput = ({ label = '', defaultValue, onChange, onSearchChange }) => {
@@ -12,6 +11,7 @@ const SelectInput = ({ label = '', defaultValue, onChange, onSearchChange }) => 
     const [value, setValue] = React.useState(defaultValue);
 
     React.useEffect(() => {
+
         onChange(value);
     // eslint-disable-next-line react-hooks/exhaustive-deps
     }, [value]);
@@ -43,6 +43,7 @@ const SelectInput = ({ label = '', defaultValue, onChange, onSearchChange }) => 
             label={label}
             inputProps={{
                 ...params.inputProps,
+                autoComplete: 'new-password',
             }}
         />
     );
@@ -57,7 +58,8 @@ const SelectInput = ({ label = '', defaultValue, onChange, onSearchChange }) => 
                     options={locationsList}
                     renderOption={renderLocationBox}
                     onChange={(event, newValue) => {
-                        setValue(newValue);
+                        console.log(newValue, 'newValue');
+                        setValue(newValue.code);
                     }}
                     inputValue={value}
                     onInputChange={(event, newInputValue) => {

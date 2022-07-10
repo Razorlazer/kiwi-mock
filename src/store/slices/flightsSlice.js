@@ -20,7 +20,10 @@ export const flightsSlice = createSlice({
     initialState,
     reducers: {
         changeFlightsSearchParams: (state, action) => {
-            state.flightsSearchParams = action.payload;
+            state.flightsSearchParams = {
+                ...state.flightsSearchParams,
+                ...action.payload
+            }
         },
     },
     extraReducers: (builder) => {
@@ -32,6 +35,7 @@ export const flightsSlice = createSlice({
                 state.status = 'rejected';
             })
             .addCase(fetchFlightList.fulfilled, (state, action) => {
+                console.log(action.payload);
                 state.status = 'fullfilled';
                 state.flightList = action.payload;
             });
@@ -39,5 +43,5 @@ export const flightsSlice = createSlice({
 });
 
 export const { changeFlightsSearchParams } = flightsSlice.actions;
-
+export const selectFlights = (state) => state.flights;
 export default flightsSlice.reducer;

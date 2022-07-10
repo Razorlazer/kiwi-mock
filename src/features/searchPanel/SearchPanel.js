@@ -4,21 +4,24 @@ import AppBar from '@mui/material/AppBar';
 import { Container, Grid, Divider, Button } from '@mui/material';
 import Stack from '@mui/material/Stack';
 
-import PriceSlider from '../../sharedComponents/PriceSlider';
 import { selectLocations } from '../../store/slices/locationsSlice';
-import { fetchFlightList } from '../../store/slices/flightsSlice';
+import { fetchFlightList, selectFlights } from '../../store/slices/flightsSlice';
 import LocationSelector from './LocationsSelector';
-import DatePicker from '../../sharedComponents/DatePicker';
-import Toggle from '../../sharedComponents/Toggle';
+import DateSelector from './DateSelector';
+import FlightTypeSelector from './FlightTypeSelector';
+import PriceSelector from './PriceSelector';
 
 const SearchPanel = () => {
     
     const dispatch = useDispatch();
     const { departureLocation , destinationLocation } = useSelector(selectLocations);
-    //console.log(departureLocation, destinationLocation);
-    const fetchFlights =() => {
-        dispatch(fetchFlightList());
+    const { flightsSearchParams } = useSelector(selectFlights);
+
+    const fetchFlights = () => {
+        dispatch(fetchFlightList({ fly_from: departureLocation, fly_to: destinationLocation, ...flightsSearchParams }));
     };
+
+    const isSearchDisabled = !departureLocation || !destinationLocation || !flightsSearchParams.fromDate || !flightsSearchParams.toDate;
 
     return (<AppBar position="static" color="inherit">
             <Container maxWidth="lg">
@@ -30,22 +33,15 @@ const SearchPanel = () => {
                     >
                         <Grid container columnSpacing={2} direction={'row'}>
                             <LocationSelector />
-                            <Grid item lg={3} md={3} sm={12}>
-                                <DatePicker label={'Departure'} />
-                            </Grid>
-                            <Grid item lg={3} md={3} sm={12}>
-                                <DatePicker label={'Return'} />
-                            </Grid>
+                            <DateSelector />
                         </Grid>
                         <Grid container justifyContent="space-between">
-                            <Grid item>
-                                <Toggle />
-                            </Grid>
-                            <Grid item>
-                                <PriceSlider />
-                            </Grid>
+                            <FlightTypeSelector/>
+                            <PriceSelector/>
                             <Grid>
-                                <Button color={'success'} variant="outlined" onClick={fetchFlights}>Search</Button>
+                                <Button color={'success'} variant="outlined" onClick={fetchFlights} disabled={isSearchDisabled}>
+                                    Search
+                                </Button>
                             </Grid>
                         </Grid>
                     </Stack>
