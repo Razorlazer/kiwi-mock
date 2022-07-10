@@ -12,6 +12,6 @@ export const fetchLocations = (params) => {
 
 export const fetchFlights = (params) => {
     const urlParams = buildURLParams(params);
-    //some url params are by default added for the sakeof simplicity  
-    return kiwiAPI.get(`/flights?v=3&partner=skypicker&sort=price&asc=1&vehicle_type=aircraft&locale=en&${urlParams}`);
+    //some url params are by default added for the sake of simplicity to save time
+    return kiwiAPI.get(`/flights?v=3&partner=skypicker&vehicle_type=aircraft&locale=en&${urlParams}`);
 }

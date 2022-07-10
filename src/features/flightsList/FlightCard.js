@@ -63,6 +63,7 @@ const flightInfoBox = (flight, currency, price)=> {
         </Grid>
     </Grid>
 }
+
 const FlightCard = ({flight}) => {
     const currency = flight?.conversion && Object.keys(flight.conversion)[0];
     const price = flight?.conversion && Object.values(flight.conversion)[0];

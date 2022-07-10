@@ -18,8 +18,15 @@ const SearchPanel = () => {
     const { flightsSearchParams } = useSelector(selectFlights);
 
     const fetchFlights = () => {
-        dispatch(fetchFlightList({ fly_from: departureLocation, fly_to: destinationLocation, ...flightsSearchParams }));
+        //makes sure that locations are set
+        if (departureLocation && destinationLocation) {
+            dispatch(fetchFlightList({ fly_from: departureLocation, fly_to: destinationLocation, ...flightsSearchParams }));
+        }
     };
+
+    React.useEffect(() => {
+        fetchFlights();
+    }, [flightsSearchParams.sort])
 
     const isSearchDisabled = !departureLocation || !destinationLocation || !flightsSearchParams.fromDate || !flightsSearchParams.toDate;
 

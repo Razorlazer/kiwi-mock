@@ -5,15 +5,14 @@ import { createLocationSelectionList } from '../../utilities/helperFunctions';
 const initialState = {
     locationsList: [],
     searchParams: { location_types: 'airport', term: 'Prague' },
-    destinationLocation: {},
-    departureLocation: {},
-    status: 'loading',
+    destinationLocation: null,
+    departureLocation: null,
+    status: 'idle',
 };
 
 export const fetchLocationsList = createAsyncThunk(
     'flights/destination/list',
     async (params) => {
-        console.log(params);
         const response = await fetchLocations(params);
         return response.data;
     }
@@ -24,13 +23,16 @@ export const locationsSlice = createSlice({
     initialState,
     reducers: {
         changeLocationSearchParams: (state, action) => {
-            state.searchParams = { ...state.searchParams, ...action.payload }
+            state.searchParams = { ...state.searchParams, ...action.payload };
+            state.status = 'loading';
         },
         changeDepartureLocation: (state, action) => {
-            state.departureLocation = action.payload
+            state.departureLocation = action.payload;
+            state.status = 'loading';
         },
         changeDestinationaLocation: (state, action) => {
-            state.destinationLocation = action.payload
+            state.destinationLocation = action.payload;
+            state.status = 'loading';
         },
     },
     extraReducers: (builder) => {

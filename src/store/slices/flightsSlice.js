@@ -3,8 +3,8 @@ import { fetchFlights } from '../../api';
 
 const initialState = {
     flightList: [],
-    flightsSearchParams: {},
-    status: 'loading',
+    flightsSearchParams: { sort: 'price' },
+    status: 'idle',
 };
 
 export const fetchFlightList = createAsyncThunk(
@@ -23,7 +23,11 @@ export const flightsSlice = createSlice({
             state.flightsSearchParams = {
                 ...state.flightsSearchParams,
                 ...action.payload
-            }
+            };
+        },
+        changeFlightsSearchStatus: (state, action) => {
+            console.log(action.payload,'payload')
+            state.status = action.payload;
         },
     },
     extraReducers: (builder) => {
@@ -42,6 +46,6 @@ export const flightsSlice = createSlice({
     },
 });
 
-export const { changeFlightsSearchParams } = flightsSlice.actions;
+export const { changeFlightsSearchParams, changeFlightsSearchStatus } = flightsSlice.actions;
 export const selectFlights = (state) => state.flights;
 export default flightsSlice.reducer;

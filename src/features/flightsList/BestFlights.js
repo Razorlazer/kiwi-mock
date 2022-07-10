@@ -1,19 +1,22 @@
 import * as React from 'react';
-import { useSelector } from 'react-redux';
+import { useSelector, useDispatch } from 'react-redux';
 import BottomNavigation from '@mui/material/BottomNavigation';
 import BottomNavigationAction from '@mui/material/BottomNavigationAction';
 import Euro from '@mui/icons-material/Euro';
 import AccessTime from '@mui/icons-material/AccessTime';
 import ConnectingAirports from '@mui/icons-material/ConnectingAirports';
 import Paper from '@mui/material/Paper';
-import { selectFlights } from '../../store/slices/flightsSlice';
+import { selectFlights, changeFlightsSearchParams, changeFlightsSearchStatus } from '../../store/slices/flightsSlice';
 
 const BestFlights = () => {
-    const [value, setValue] = React.useState('price');
-    const { flightList } = useSelector(selectFlights);
+    const dispatch = useDispatch();
+    const { flightList, flightsSearchParams } = useSelector(selectFlights);
+    const [value, setValue] = React.useState(flightsSearchParams?.sort ?? 'price');
 
-    const handleChange = (event, newValue) => {
-        setValue(newValue);
+    const handleChange = (event, value) => {
+        dispatch(changeFlightsSearchStatus('loading'))
+        dispatch(changeFlightsSearchParams({ sort: value, asc: value === 'quality' ? true : false }));
+        setValue(value);
     };
 
     const bestFlights = flightList?.best_results ? flightList.best_results[0] : {};  
@@ -22,18 +25,18 @@ const BestFlights = () => {
         <Paper elevation={1} >
             <BottomNavigation value={value} onChange={handleChange} showLabels>
                 <BottomNavigationAction
-                    label={`Cheapest: ${bestFlights.price}`}
+                    label={`Cheapest: ${bestFlights?.price ?? '' }` }
                     value="price"
                     icon={<Euro />}
                 />
                 <BottomNavigationAction
-                    label={`Fastest: ${bestFlights.duration}`}
+                    label={`Fastest: ${bestFlights?.duration ?? ''}`}
                     value="duration"
                     icon={<AccessTime />}
                 />
                 <BottomNavigationAction
-                    label="Transfer: direct"
-                    value="nearby"
+                    label="Quality"
+                    value="quality"
                     icon={<ConnectingAirports />}
                 />
             </BottomNavigation>
