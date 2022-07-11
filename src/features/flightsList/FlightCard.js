@@ -1,7 +1,6 @@
 import * as React from 'react';
 import Grid from '@mui/material/Grid';
 import Card from '@mui/material/Card';
-import CardActions from '@mui/material/CardActions';
 import CardContent from '@mui/material/CardContent';
 import Button from '@mui/material/Button';
 import Typography from '@mui/material/Typography';
@@ -67,6 +66,7 @@ const flightInfoBox = (flight, currency, price)=> {
 const FlightCard = ({flight}) => {
     const currency = flight?.conversion && Object.keys(flight.conversion)[0];
     const price = flight?.conversion && Object.values(flight.conversion)[0];
+    
     return (
         <Card variant="outlined">
             <CardContent>

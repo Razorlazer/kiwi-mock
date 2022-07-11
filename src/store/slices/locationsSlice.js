@@ -2,14 +2,14 @@ import { createAsyncThunk, createSlice } from '@reduxjs/toolkit';
 import { fetchLocations } from '../../api';
 import { createLocationSelectionList } from '../../utilities/helperFunctions';
 
-const initialState = {
+export const locationsInitialState = {
     departureLocationsList: [],
     destinationLocationsList: [],
     searchParams: { location_types: 'airport', term: 'Prague' },
     destinationLocation: null,
     departureLocation: null,
-    departureLocationStatus: 'idle',
-    destinationLocationStatus: 'idle',
+    departureStatus: 'idle',
+    destinationStatus: 'idle',
 };
 
 export const fetchDepartureLocationsList = createAsyncThunk(
@@ -31,7 +31,7 @@ export const fetchDestinationLocationsList = createAsyncThunk(
 
 export const locationsSlice = createSlice({
     name: 'flights',
-    initialState,
+    initialState: locationsInitialState,
     reducers: {
         changeLocationSearchParams: (state, action) => {
             state.searchParams = { ...state.searchParams, ...action.payload };
@@ -50,27 +50,27 @@ export const locationsSlice = createSlice({
         builder
             //Departure location actions
             .addCase(fetchDepartureLocationsList.pending, (state) => {
-                state.departureLocationStatus = 'loading';
+                state.departureStatus = 'loading';
             })
             .addCase(fetchDepartureLocationsList.rejected, (state) => {
-                state.departureLocationStatus = 'rejected';
+                state.departureStatus = 'rejected';
             })
             .addCase(fetchDepartureLocationsList.fulfilled, (state, action) => {
                 const list = createLocationSelectionList(action.payload, state);
-                state.departureLocationStatus = 'fullfilled';
+                state.departureStatus = 'fullfilled';
                 state.departureLocationsList = list;
             })
 
             //Destination location actions
             .addCase(fetchDestinationLocationsList.pending, (state) => {
-                state.destinationLocationStatus = 'loading';
+                state.destinationStatus = 'loading';
             })
             .addCase(fetchDestinationLocationsList.rejected, (state) => {
-                state.destinationLocationStatus = 'rejected';
+                state.destinationStatus = 'rejected';
             })
             .addCase(fetchDestinationLocationsList.fulfilled, (state, action) => {
                 const list = createLocationSelectionList(action.payload, state);
-                state.destinationLocationStatus = 'fullfilled';
+                state.destinationStatus = 'fullfilled';
                 state.destinationLocationsList = list;
             });
     },

@@ -1,13 +1,17 @@
 import * as React from 'react';
+import { useSelector } from 'react-redux';
 import Box from '@mui/material/Box';
 import TextField from '@mui/material/TextField';
 import Autocomplete from '@mui/material/Autocomplete';
-import FormControl from '@mui/material/FormControl';
+import {
+    selectLocations,
+} from '../store/slices/locationsSlice';
 
-const SelectInput = ({ label = '', defaultValue, onChange, onSearchChange, departureList, destinationList }) => {
-    
+const SelectInput = ({ label = '', onChange, onSearchChange, departureList, destinationList }) => {
+    const { departureStatus, destinationStatus } =  useSelector(selectLocations);
+
     const renderLocationBox = (props, option) => {
-        const countryCode = option?.country ? option.country.code : option?.city.country.code;
+        const countryCode = option?.city.country.code;
         return (
             <Box component="li" sx={{ '& > img': { mr: 2, flexShrink: 0 } }} {...props}>
                 <img
@@ -34,25 +38,20 @@ const SelectInput = ({ label = '', defaultValue, onChange, onSearchChange, depar
     );
 
     return (
-        <Box>
-            <FormControl fullWidth>
-                <Autocomplete
-                    disablePortal
-                    value={defaultValue}
-                    id="location-input"
-                    options={departureList || destinationList}
-                    renderOption={renderLocationBox}
-                    onChange={(event, newValue) => {
-                        onChange(newValue.code);
-                    }}
-                    inputValue={defaultValue}
-                    onInputChange={(event, newInputValue) => {
-                        onSearchChange(newInputValue);
-                    }}
-                    renderInput={renderInput}
-                />
-            </FormControl>
-        </Box>
+        <Autocomplete
+            disablePortal
+            loading={departureStatus === 'loading' || destinationStatus === 'loading'}
+            id="location-input"
+            options={departureList || destinationList}
+            renderOption={renderLocationBox}
+            onChange={(event, newValue) => {
+                onChange(newValue?.code);
+            }}
+            onInputChange={(event, newInputValue) => {
+                onSearchChange(newInputValue);
+            }}
+            renderInput={renderInput}
+        />
     );
 };
 

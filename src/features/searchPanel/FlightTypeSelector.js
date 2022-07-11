@@ -19,7 +19,7 @@ const fligtTypes = [{
         value: 'C'
     },
     {
-        label: 'First Slass',
+        label: 'First class',
         key: 'F',
         value: 'F'
     }

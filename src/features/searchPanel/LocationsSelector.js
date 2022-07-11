@@ -12,7 +12,7 @@ import {
     changeDepartureLocation
 } from '../../store/slices/locationsSlice';
 
-
+//TODO: this component needs to be optimised with the locations slice
 const LocationsSelector = ()=>{
     const dispatch = useDispatch();
     const { searchParams, departureLocationsList, destinationLocationsList } = useSelector(selectLocations);
@@ -26,11 +26,10 @@ const LocationsSelector = ()=>{
         dispatch(fetchDestinationLocationsList({ ...searchParams, term: searchKey ? searchKey : searchParams.term }));
     }
 
-
+    //debounce the action to improve user experience 
     const [searchDepartureLocation] = React.useState(() =>
         debounce(value => fetchDepartureLocations(value), 400)
     );
-
     const [searchDestinationLocation] = React.useState(() =>
         debounce(value => fetchDestinationLocations(value), 400)
     );
@@ -41,7 +40,6 @@ const LocationsSelector = ()=>{
     const changeDestinationParams = (location) => {
         dispatch(changeDestinationaLocation(location));
     };
-
     const changeDepartureParams = (location) => {
         dispatch(changeDepartureLocation(location))
     };

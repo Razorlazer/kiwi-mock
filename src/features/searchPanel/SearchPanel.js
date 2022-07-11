@@ -12,7 +12,6 @@ import FlightTypeSelector from './FlightTypeSelector';
 import PriceSelector from './PriceSelector';
 
 const SearchPanel = () => {
-    
     const dispatch = useDispatch();
     const { departureLocation , destinationLocation } = useSelector(selectLocations);
     const { flightsSearchParams } = useSelector(selectFlights);
@@ -26,7 +25,7 @@ const SearchPanel = () => {
 
     React.useEffect(() => {
         fetchFlights();
-    }, [flightsSearchParams.sort])
+    }, [flightsSearchParams.sort, flightsSearchParams.limit])
 
     const isSearchDisabled = !departureLocation || !destinationLocation || !flightsSearchParams.fromDate || !flightsSearchParams.toDate;
 

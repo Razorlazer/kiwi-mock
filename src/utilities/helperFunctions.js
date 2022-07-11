@@ -1,4 +1,9 @@
 export const buildURLParams = (params = {})=>{
+    //invalid url parameters type
+    if(typeof params !== 'object'){
+        return '';
+    }
+
     const keys = Object.keys(params);
 
     const urlParams = [];
@@ -11,13 +16,12 @@ export const buildURLParams = (params = {})=>{
     return urlParams.join('&');
 };
 
-export const createLocationSelectionList = ({ locations }, state) => {
+export const createLocationSelectionList = ({ locations }, state={}) => {
     const mappedLocations = locations.filter(location => location.code !== state.destinationLocation && location.code!== state.departureLocation)
     .map(location => ({
         id: location.id,
         code: location.code,
         label: location.name,
-        global_rank_dst: location.global_rank_dst,
         country: location.country,
         city: location.city
     }));
