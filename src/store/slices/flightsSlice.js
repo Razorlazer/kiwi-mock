@@ -28,6 +28,10 @@ export const flightsSlice = createSlice({
         changeFlightsSearchStatus: (state, action) => {
             state.status = action.payload;
         },
+        resetFlightsStore: (state) => {
+            state.flightList = [];
+            state.status = 'idle';
+        },
     },
     extraReducers: (builder) => {
         builder
@@ -44,6 +48,11 @@ export const flightsSlice = createSlice({
     },
 });
 
-export const { changeFlightsSearchParams, changeFlightsSearchStatus } = flightsSlice.actions;
+export const { 
+    changeFlightsSearchParams, 
+    changeFlightsSearchStatus,
+    resetFlightsStore
+} = flightsSlice.actions;
+
 export const selectFlights = (state) => state.flights;
 export default flightsSlice.reducer;

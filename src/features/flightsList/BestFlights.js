@@ -21,7 +21,7 @@ const BestFlights = () => {
 
     const bestFlights = flightList?.best_results ? flightList.best_results[0] : {};  
     
-    return flightList.best_results ? (
+    return flightList?.data?.length > 0 ? (
         <Paper elevation={1} >
             <BottomNavigation value={value} onChange={handleChange} showLabels>
                 <BottomNavigationAction

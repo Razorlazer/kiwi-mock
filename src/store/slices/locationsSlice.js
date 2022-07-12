@@ -45,6 +45,7 @@ export const locationsSlice = createSlice({
             state.destinationLocation = action.payload;
             state.status = 'loading';
         },
+        resetLocationsStore: () => locationsInitialState
     },
     extraReducers: (builder) => {
         builder
@@ -76,6 +77,12 @@ export const locationsSlice = createSlice({
     },
 });
 
-export const { changeLocationSearchParams, changeDepartureLocation, changeDestinationaLocation } = locationsSlice.actions;
+export const { 
+    changeLocationSearchParams, 
+    changeDepartureLocation, 
+    changeDestinationaLocation,
+    resetLocationsStore
+} = locationsSlice.actions;
+
 export const selectLocations = (state) => state.locations;
 export default locationsSlice.reducer;

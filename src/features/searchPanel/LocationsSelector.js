@@ -46,10 +46,20 @@ const LocationsSelector = ()=>{
 
     return(<>
         <Grid item lg={3} md={3} sm={12}>
-            <SelectInput label={'From'} onChange={changeDepartureParams} onSearchChange={setSearchDepartureString} departureList={departureLocationsList}/>
+            <SelectInput 
+                label={'Departure city/airport'} 
+                onChange={changeDepartureParams} 
+                onSearchChange={setSearchDepartureString} 
+                departureList={departureLocationsList}
+            />
         </Grid>
         <Grid item lg={3} md={3} sm={12}>
-            <SelectInput label={'To'} onChange={changeDestinationParams} onSearchChange={setSearchDestincationString} destinationList={destinationLocationsList}/>
+            <SelectInput 
+                label={'Destination city/airport'} 
+                onChange={changeDestinationParams} 
+                onSearchChange={setSearchDestincationString} 
+                destinationList={destinationLocationsList}
+            />
         </Grid>
     </>);
 };
