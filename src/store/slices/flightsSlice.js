@@ -26,6 +26,7 @@ export const flightsSlice = createSlice({
             };
         },
         changeFlightsSearchStatus: (state, action) => {
+            state.flightList = [];
             state.status = action.payload;
         },
         resetFlightsStore: (state) => {

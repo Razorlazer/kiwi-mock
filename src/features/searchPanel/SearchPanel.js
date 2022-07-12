@@ -1,34 +1,16 @@
 import * as React from 'react';
-import { useSelector, useDispatch } from 'react-redux';
 import AppBar from '@mui/material/AppBar';
 import { Container, Grid, Divider, Button } from '@mui/material';
 import Stack from '@mui/material/Stack';
 
-import { selectLocations } from '../../store/slices/locationsSlice';
-import { fetchFlightList, selectFlights } from '../../store/slices/flightsSlice';
 import LocationSelector from './LocationsSelector';
 import DateSelector from './DateSelector';
 import FlightTypeSelector from './FlightTypeSelector';
 import PriceSelector from './PriceSelector';
+import useFlightsFetchHook from './useFlightsFetchHook';
 
 const SearchPanel = () => {
-    const dispatch = useDispatch();
-    const { departureLocation , destinationLocation } = useSelector(selectLocations);
-    const { flightsSearchParams } = useSelector(selectFlights);
-
-
-    const isSearchDisabled = !departureLocation || !destinationLocation || !flightsSearchParams.fromDate || !flightsSearchParams.toDate;
-
-    const fetchFlights = () => {
-        //makes sure that locations are set
-        if (!isSearchDisabled) {
-            dispatch(fetchFlightList({ fly_from: departureLocation, fly_to: destinationLocation, ...flightsSearchParams }));
-        }
-    };
-
-    React.useEffect(() => {
-        fetchFlights();
-    }, [flightsSearchParams.sort, flightsSearchParams.limit])
+    const { fetchFlights, isSearchDisabled} = useFlightsFetchHook();
 
     return (<AppBar position="static" color="inherit">
             <Container maxWidth="lg">

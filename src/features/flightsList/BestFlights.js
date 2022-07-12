@@ -10,18 +10,18 @@ import { selectFlights, changeFlightsSearchParams, changeFlightsSearchStatus } f
 
 const BestFlights = () => {
     const dispatch = useDispatch();
-    const { flightList, flightsSearchParams } = useSelector(selectFlights);
+    const { flightList, flightsSearchParams, status } = useSelector(selectFlights);
     const [value, setValue] = React.useState(flightsSearchParams?.sort ?? 'price');
 
     const handleChange = (event, value) => {
         dispatch(changeFlightsSearchStatus('loading'))
-        dispatch(changeFlightsSearchParams({ sort: value, asc: value === 'quality' ? true : false }));
+        dispatch(changeFlightsSearchParams({ sort: value, asc: value === 'quality' ? true : false, limit: 10 }));
         setValue(value);
     };
 
     const bestFlights = flightList?.best_results ? flightList.best_results[0] : {};  
     
-    return flightList?.data?.length > 0 ? (
+    return status !== 'idle' ? (
         <Paper elevation={1} >
             <BottomNavigation value={value} onChange={handleChange} showLabels>
                 <BottomNavigationAction

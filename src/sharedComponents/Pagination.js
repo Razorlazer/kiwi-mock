@@ -8,7 +8,9 @@ import { changeFlightsSearchParams, selectFlights, resetFlightsStore } from '../
 //This is simple pager. It can be improved to more complex pagination component with biderctional dynamic paging
 const Paginator = () => {
     const dispatch = useDispatch();
+
     const { flightsSearchParams } = useSelector(selectFlights);
+    
     const loadMore = () => {
         const currentLimit = flightsSearchParams?.limit ?? 10;
         dispatch(changeFlightsSearchParams({ limit: currentLimit + 10 }));
