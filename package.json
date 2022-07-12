@@ -2,7 +2,7 @@
   "name": "kiwi",
   "version": "0.1.0",
   "engines": {
-      "node": "14.x"
+      "node": "14.19.1"
   },
   "private": true,
   "dependencies": {
