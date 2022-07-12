@@ -7,6 +7,7 @@ import { changeFlightsSearchParams, selectFlights } from '../../store/slices/fli
 const DateSelector = () => {
     const dispatch = useDispatch();
     const { flightsSearchParams } = useSelector(selectFlights);
+
     const handleFromDate = (date) => {
         dispatch(changeFlightsSearchParams({ fromDate: date?.toString() }));
     }
@@ -19,11 +20,11 @@ const DateSelector = () => {
     const minDate = flightsSearchParams?.fromDate && new Date(flightsSearchParams?.fromDate);
 
     return (<>
-        <Grid item lg={3} md={3} sm={12}>
-            <DatePicker label={'Departure'} onChange={handleFromDate}/>
+        <Grid item lg={3} md={3} sm={6} xs={6}>
+            <DatePicker label={'Departure date'} onChange={handleFromDate}/>
         </Grid>
-        <Grid item lg={3} md={3} sm={12}>
-            <DatePicker label={'Return'} onChange={handleToDate} minDate={minDate}/>
+        <Grid item lg={3} md={3} sm={6} xs={6}>
+            <DatePicker label={'Return date'} onChange={handleToDate} minDate={minDate}/>
         </Grid>
     </>);
 };

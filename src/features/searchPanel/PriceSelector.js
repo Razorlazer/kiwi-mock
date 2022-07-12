@@ -35,7 +35,7 @@ const PriceSelector = () => {
     };
 
     return (
-        <Grid item>
+        <Grid item lg={5} md={5} sm={12} xs={12}>
             <SliderWithLabel label={'Price up to:'} marks={marks} valuetext={valuetext} onChange={handlePriceChange} defaultValue={500}/>
         </Grid>
     );

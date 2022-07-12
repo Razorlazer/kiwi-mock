@@ -16,19 +16,21 @@ const SearchPanel = () => {
             <Container maxWidth="lg">
                     <Stack
                         mt={2}
-                        spacing={2}
+                        mb={2}
+                        spacing={1}
                         width={'100%'}
-                        divider={<Divider orientation="horizontal" flexItem />}
+                        divider={<Divider orientation="horizontal" />}
                     >
-                        <Grid container columnSpacing={2} direction={'row'}>
+                        <Grid container columnSpacing={2} rowSpacing={2} direction={'row'}>
                             <LocationSelector />
                             <DateSelector />
                         </Grid>
-                        <Grid container justifyContent="space-between">
+                        <Grid container justifyContent="space-between" rowSpacing={1}>
                             <FlightTypeSelector/>
                             <PriceSelector/>
-                            <Grid>
-                        <Button color={'success'} variant="outlined" onClick={fetchFlights} disabled={isSearchDisabled} data-testid='search-button'>
+                            <Grid item lg={1} md={1} sm={12} xs={12}>
+                                <Button color={'success'} fullWidth variant="outlined" onClick={fetchFlights} 
+                                    disabled={isSearchDisabled} data-testid='search-button'>
                                     Search
                                 </Button>
                             </Grid>
