@@ -1,6 +1,6 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`renders learn react link 1`] = `
+exports[`SearchPanel Should match the snapshot 1`] = `
 <DocumentFragment>
   <header
     class="MuiPaper-root MuiPaper-elevation MuiPaper-elevation4 MuiAppBar-root MuiAppBar-colorInherit MuiAppBar-positionStatic css-1cjrmu8-MuiPaper-root-MuiAppBar-root"
@@ -458,16 +458,5 @@ exports[`renders learn react link 1`] = `
       </div>
     </div>
   </header>
-  <div
-    class="MuiContainer-root MuiContainer-maxWidthLg css-1oqqzyl-MuiContainer-root"
-  >
-    <div
-      class="css-16z22n8-MuiStack-root"
-    >
-      <div
-        class="css-1p5q5e5-MuiStack-root"
-      />
-    </div>
-  </div>
 </DocumentFragment>
 `;

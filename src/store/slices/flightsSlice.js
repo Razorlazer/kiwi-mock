@@ -38,7 +38,6 @@ export const flightsSlice = createSlice({
                 state.status = 'rejected';
             })
             .addCase(fetchFlightList.fulfilled, (state, action) => {
-                console.log(action.payload);
                 state.status = 'fullfilled';
                 state.flightList = action.payload;
             });

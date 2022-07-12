@@ -45,7 +45,7 @@ const SearchPanel = () => {
                             <FlightTypeSelector/>
                             <PriceSelector/>
                             <Grid>
-                                <Button color={'success'} variant="outlined" onClick={fetchFlights} disabled={isSearchDisabled}>
+                        <Button color={'success'} variant="outlined" onClick={fetchFlights} disabled={isSearchDisabled} data-testid='search-button'>
                                     Search
                                 </Button>
                             </Grid>
