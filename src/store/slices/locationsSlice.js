@@ -5,7 +5,7 @@ import { createLocationSelectionList } from '../../utilities/helperFunctions';
 export const locationsInitialState = {
     departureLocationsList: [],
     destinationLocationsList: [],
-    searchParams: { location_types: 'airport', term: 'Prague' },
+    searchParams: { location_types: 'airport' },
     destinationLocation: null,
     departureLocation: null,
     departureStatus: 'idle',

@@ -1,5 +1,6 @@
 import * as React from 'react'; 
 import { useSelector, useDispatch } from 'react-redux';
+import { validateSearchParams } from '../../utilities/helperFunctions';
 import { selectLocations } from '../../store/slices/locationsSlice';
 import { fetchFlightList, selectFlights, changeFlightsSearchStatus } from '../../store/slices/flightsSlice';
 
@@ -12,30 +13,30 @@ const useFlightsFetchHook = () => {
     const dispatch = useDispatch();
     const { departureLocation, destinationLocation } = useSelector(selectLocations);
     const { flightsSearchParams } = useSelector(selectFlights);
+    const { fromDate, toDate, limit, sort } = flightsSearchParams || {};
 
-    const isSearchDisabled = !departureLocation || !destinationLocation || !flightsSearchParams.fromDate || !flightsSearchParams.toDate;
+    const isValid = validateSearchParams({ departureLocation, destinationLocation, fromDate, toDate });
 
     const fetchFlights = () => {
-        //makes sure that locations are set
-        if (!isSearchDisabled) {
+        if (isValid) {
             dispatch(fetchFlightList({ fly_from: departureLocation, fly_to: destinationLocation, ...flightsSearchParams }));
         }
     }
 
     const resetAndFetchFlights = () => {
-        !isSearchDisabled && dispatch(changeFlightsSearchStatus('loading'));
+        isValid && dispatch(changeFlightsSearchStatus('loading'));
         fetchFlights();
     };
 
     React.useEffect(() => {
         fetchFlights();
-    }, [flightsSearchParams.limit]);
+    }, [limit]);
 
     React.useEffect(() => {
         resetAndFetchFlights();
-    }, [flightsSearchParams.sort]);
+    }, [sort]);
 
-    return { fetchFlights, isSearchDisabled };
+    return { fetchFlights, isSearchDisabled: !isValid };
 };
 
 export default useFlightsFetchHook;

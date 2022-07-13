@@ -3,7 +3,8 @@ import AppBar from '@mui/material/AppBar';
 import { Container, Grid, Divider, Button } from '@mui/material';
 import Stack from '@mui/material/Stack';
 
-import LocationSelector from './LocationsSelector';
+import DepartureLocationSelector from './DepartureLocationSelector';
+import DestinationLocationSelector from './DestinationLocationSelector';
 import DateSelector from './DateSelector';
 import FlightTypeSelector from './FlightTypeSelector';
 import PriceSelector from './PriceSelector';
@@ -22,7 +23,8 @@ const SearchPanel = () => {
                         divider={<Divider orientation="horizontal" />}
                     >
                         <Grid container columnSpacing={2} rowSpacing={2} direction={'row'}>
-                            <LocationSelector />
+                            <DepartureLocationSelector />
+                            <DestinationLocationSelector />
                             <DateSelector />
                         </Grid>
                         <Grid container justifyContent="space-between" rowSpacing={1}>

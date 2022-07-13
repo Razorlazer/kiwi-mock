@@ -50,6 +50,7 @@ const SelectInput = ({ label = '', onChange, onSearchChange, departureList, dest
             onInputChange={(event, newInputValue) => {
                 onSearchChange(newInputValue);
             }}
+            noOptionsText={'No locations, type another city'}
             renderInput={renderInput}
         />
     );
