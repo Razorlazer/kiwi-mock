@@ -11,7 +11,7 @@ import PriceSelector from './PriceSelector';
 import useFlightsFetchHook from './useFlightsFetchHook';
 
 const SearchPanel = () => {
-    const { fetchFlights, isSearchDisabled} = useFlightsFetchHook();
+    const { resetAndFetchFlights, isSearchDisabled} = useFlightsFetchHook();
 
     return (<AppBar position="static" color="inherit">
             <Container maxWidth="lg">
@@ -31,7 +31,7 @@ const SearchPanel = () => {
                             <FlightTypeSelector/>
                             <PriceSelector/>
                             <Grid item lg={1} md={1} sm={12} xs={12}>
-                                <Button color={'success'} fullWidth variant="outlined" onClick={fetchFlights} 
+                                <Button color={'success'} fullWidth variant="outlined" onClick={resetAndFetchFlights} 
                                     disabled={isSearchDisabled} data-testid='search-button'>
                                     Search
                                 </Button>

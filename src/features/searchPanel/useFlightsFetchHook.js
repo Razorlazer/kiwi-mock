@@ -7,7 +7,7 @@ import { fetchFlightList, selectFlights, changeFlightsSearchStatus } from '../..
 /**
 * Manages flights list fetch action. It enables to fetch flights from scratch when resetAndFetchFlights is triggered or 
 * loads more flights onto existing list when fetchFlights is triggered solely
-* @returns {fetchFlights, isSearchDisabled}
+* @returns {fetchFlights, isSearchDisabled, resetAndFetchFlights}
 */
 const useFlightsFetchHook = () => {
     const dispatch = useDispatch();
@@ -36,7 +36,7 @@ const useFlightsFetchHook = () => {
         resetAndFetchFlights();
     }, [sort]);
 
-    return { fetchFlights, isSearchDisabled: !isValid };
+    return { fetchFlights, isSearchDisabled: !isValid, resetAndFetchFlights };
 };
 
 export default useFlightsFetchHook;
