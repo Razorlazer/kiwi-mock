@@ -3,33 +3,24 @@ import Box from '@mui/material/Box';
 import ToggleButton from '@mui/material/ToggleButton';
 import ToggleButtonGroup from '@mui/material/ToggleButtonGroup';
 
-export default function Toggle() {
-    const [alignment, setAlignment] = React.useState('left');
+const Toggle = ({ toggleOptions = [] , defaultValue = 'M', onChange }) => {
+    const [value, setValue] = React.useState(defaultValue);
+    const [options, setOptions] = React.useState([]);
 
-    const handleChange = (event, newAlignment) => {
-        setAlignment(newAlignment);
+    const handleChange = (event, type) => {
+        setValue(type);
+        onChange(type);
     };
 
-    const children = [
-        <ToggleButton value="left" key="left">
-            return
-        </ToggleButton>,
-        <ToggleButton value="center" key="center">
-            One way
-        </ToggleButton>,
-        <ToggleButton value="right" key="right">
-            Multi-city
-        </ToggleButton>,
-        <ToggleButton value="justify" key="justify">
-            Nomad
-        </ToggleButton>,
-    ];
-
-    const control = {
-        value: alignment,
-        onChange: handleChange,
-        exclusive: true,
-    };
+    React.useEffect(() => {
+        setOptions(
+            toggleOptions.map(option => (
+                <ToggleButton value={option.value} key={option.value}>
+                    {option.label}
+                </ToggleButton>
+            )
+        ));
+    }, [toggleOptions]);
 
     return (
         <Box
@@ -37,17 +28,14 @@ export default function Toggle() {
                 display: 'flex',
                 flexDirection: 'column',
                 alignItems: 'center',
-                // TODO Replace with Stack
                 '& > :not(style) + :not(style)': { mt: 2 },
             }}
         >
-            <ToggleButtonGroup size="small" {...control}>
-                {children}
+            <ToggleButtonGroup color='primary' size="small" value={value} onChange={handleChange} exclusive={true}>
+                {options}
             </ToggleButtonGroup>
-            {/* <ToggleButtonGroup {...control}>{children}</ToggleButtonGroup>
-            <ToggleButtonGroup size="large" {...control}>
-                {children}
-            </ToggleButtonGroup> */}
         </Box>
     );
 }
+
+export default Toggle;

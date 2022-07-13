@@ -1,11 +1,13 @@
 {
   "name": "kiwi",
   "version": "0.1.0",
+  "engines": {
+      "node": "16.13.0"
+  },
   "private": true,
   "dependencies": {
     "@emotion/react": "^11.9.3",
     "@emotion/styled": "^11.9.3",
-    "@material-ui/styles": "^4.11.5",
     "@mui/icons-material": "^5.8.4",
     "@mui/material": "^5.8.7",
     "@mui/x-date-pickers": "^5.0.0-beta.0",
@@ -25,8 +27,8 @@
     "web-vitals": "^2.1.4"
   },
   "scripts": {
-    "start": "react-scripts start",
-    "build": "react-scripts build",
+    "start": "node --max_old_space_size=2048 node_modules/.bin/react-scripts start",
+    "build": "node --max_old_space_size=2048 node_modules/.bin/react-scripts build",
     "test": "react-scripts test",
     "eject": "react-scripts eject"
   },
@@ -47,5 +49,9 @@
       "last 1 firefox version",
       "last 1 safari version"
     ]
+  },
+  "devDependencies": {
+    "jest": "^28.1.2",
+    "redux-mock-store": "^1.5.4"
   }
 }

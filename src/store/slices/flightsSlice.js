@@ -1,10 +1,10 @@
 import { createAsyncThunk, createSlice } from '@reduxjs/toolkit';
 import { fetchFlights } from '../../api';
 
-const initialState = {
+export const flightsInitialState = {
     flightList: [],
-    flightsSearchParams: {},
-    status: 'loading',
+    flightsSearchParams: { sort: 'price', limit: 10, offset: 0 },
+    status: 'idle',
 };
 
 export const fetchFlightList = createAsyncThunk(
@@ -17,10 +17,21 @@ export const fetchFlightList = createAsyncThunk(
 
 export const flightsSlice = createSlice({
     name: 'flights',
-    initialState,
+    initialState: flightsInitialState,
     reducers: {
         changeFlightsSearchParams: (state, action) => {
-            state.flightsSearchParams = action.payload;
+            state.flightsSearchParams = {
+                ...state.flightsSearchParams,
+                ...action.payload
+            };
+        },
+        changeFlightsSearchStatus: (state, action) => {
+            state.flightList = [];
+            state.status = action.payload;
+        },
+        resetFlightsStore: (state) => {
+            state.flightList = [];
+            state.status = 'idle';
         },
     },
     extraReducers: (builder) => {
@@ -38,6 +49,11 @@ export const flightsSlice = createSlice({
     },
 });
 
-export const { changeFlightsSearchParams } = flightsSlice.actions;
+export const { 
+    changeFlightsSearchParams, 
+    changeFlightsSearchStatus,
+    resetFlightsStore
+} = flightsSlice.actions;
 
+export const selectFlights = (state) => state.flights;
 export default flightsSlice.reducer;

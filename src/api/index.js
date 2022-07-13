@@ -1,5 +1,6 @@
 import axios from 'axios';
 import { buildURLParams } from '../utilities/helperFunctions';
+
 const kiwiAPI = axios.create({
     baseURL: 'https://api.skypicker.com'
 });
@@ -10,5 +11,7 @@ export const fetchLocations = (params) => {
 }
 
 export const fetchFlights = (params) => {
-    return kiwiAPI.get('/flights?v=3&partner=skypicker&locale=en&flyFrom=prague_cz&to=paris_fr&dateFrom=18%2F07%2F2022&dateTo=18%2F07%2F2022&typeFlight=return&returnFrom=19%2F07%2F2022&returnTo=19%2F07%2F2022');
+    const urlParams = buildURLParams(params);
+    //some url params are by default added for the sake of simplicity to save time
+    return kiwiAPI.get(`/flights?v=3&partner=skypicker&vehicle_type=aircraft&locale=en&${urlParams}`);
 }
