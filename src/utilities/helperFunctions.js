@@ -47,7 +47,7 @@ export const compareDates = (date1, date2) =>{
         return 'Invalid date';
     };
 
-    if(dateObject1 === dateObject2) {
+    if(dateObject1.toString() === dateObject2.toString()) {
         return 0;
     } else if(dateObject1 > dateObject2){
         return -1;
@@ -57,6 +57,10 @@ export const compareDates = (date1, date2) =>{
 };
 
 export const validateSearchParams = (params) => {
+    if(typeof params !== 'object') {
+        return false;
+    }
+
     const keys = Object.keys(params);
 
     let isValid = true;
@@ -71,7 +75,7 @@ export const validateSearchParams = (params) => {
         return false;
     }
 
-    if (compareDates(params.fromDate, params.toDate) !== 1) {
+    if (compareDates(params.fromDate, params.toDate) !== 1 && compareDates(params.fromDate, params.toDate) !== 0) {
         return false;
     }
 

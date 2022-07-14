@@ -1,6 +1,6 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`SearchPanel Should match the snapshot 1`] = `
+exports[`renders learn react link 1`] = `
 <DocumentFragment>
   <header
     class="MuiPaper-root MuiPaper-elevation MuiPaper-elevation4 MuiAppBar-root MuiAppBar-colorInherit MuiAppBar-positionStatic css-1cjrmu8-MuiPaper-root-MuiAppBar-root"
@@ -9,13 +9,13 @@ exports[`SearchPanel Should match the snapshot 1`] = `
       class="MuiContainer-root MuiContainer-maxWidthLg css-1oqqzyl-MuiContainer-root"
     >
       <div
-        class="css-cdm1oc-MuiStack-root"
+        class="css-8psptw-MuiStack-root"
       >
         <div
-          class="MuiGrid-root MuiGrid-container css-o1xwpy-MuiGrid-root"
+          class="MuiGrid-root MuiGrid-container css-mhc70k-MuiGrid-root"
         >
           <div
-            class="MuiGrid-root MuiGrid-item MuiGrid-grid-sm-12 MuiGrid-grid-md-3 MuiGrid-grid-lg-3 css-sktcqb-MuiGrid-root"
+            class="MuiGrid-root MuiGrid-item MuiGrid-grid-xs-12 MuiGrid-grid-sm-12 MuiGrid-grid-md-3 MuiGrid-grid-lg-3 css-iv7vbz-MuiGrid-root"
           >
             <div
               class="MuiAutocomplete-root MuiAutocomplete-hasPopupIcon css-16awh2u-MuiAutocomplete-root"
@@ -29,7 +29,7 @@ exports[`SearchPanel Should match the snapshot 1`] = `
                   for="location-input"
                   id="location-input-label"
                 >
-                  From
+                  Departure city/airport
                 </label>
                 <div
                   class="MuiOutlinedInput-root MuiInputBase-root MuiInputBase-colorPrimary MuiInputBase-fullWidth MuiInputBase-formControl MuiInputBase-adornedEnd MuiAutocomplete-inputRoot css-154xyx0-MuiInputBase-root-MuiOutlinedInput-root"
@@ -81,7 +81,7 @@ exports[`SearchPanel Should match the snapshot 1`] = `
                       class="css-1ftyaf0"
                     >
                       <span>
-                        From
+                        Departure city/airport
                       </span>
                     </legend>
                   </fieldset>
@@ -90,7 +90,7 @@ exports[`SearchPanel Should match the snapshot 1`] = `
             </div>
           </div>
           <div
-            class="MuiGrid-root MuiGrid-item MuiGrid-grid-sm-12 MuiGrid-grid-md-3 MuiGrid-grid-lg-3 css-sktcqb-MuiGrid-root"
+            class="MuiGrid-root MuiGrid-item MuiGrid-grid-xs-12 MuiGrid-grid-sm-12 MuiGrid-grid-md-3 MuiGrid-grid-lg-3 css-iv7vbz-MuiGrid-root"
           >
             <div
               class="MuiAutocomplete-root MuiAutocomplete-hasPopupIcon css-16awh2u-MuiAutocomplete-root"
@@ -104,7 +104,7 @@ exports[`SearchPanel Should match the snapshot 1`] = `
                   for="location-input"
                   id="location-input-label"
                 >
-                  To
+                  Destination city/airport
                 </label>
                 <div
                   class="MuiOutlinedInput-root MuiInputBase-root MuiInputBase-colorPrimary MuiInputBase-fullWidth MuiInputBase-formControl MuiInputBase-adornedEnd MuiAutocomplete-inputRoot css-154xyx0-MuiInputBase-root-MuiOutlinedInput-root"
@@ -156,7 +156,7 @@ exports[`SearchPanel Should match the snapshot 1`] = `
                       class="css-1ftyaf0"
                     >
                       <span>
-                        To
+                        Destination city/airport
                       </span>
                     </legend>
                   </fieldset>
@@ -165,7 +165,7 @@ exports[`SearchPanel Should match the snapshot 1`] = `
             </div>
           </div>
           <div
-            class="MuiGrid-root MuiGrid-item MuiGrid-grid-sm-12 MuiGrid-grid-md-3 MuiGrid-grid-lg-3 css-sktcqb-MuiGrid-root"
+            class="MuiGrid-root MuiGrid-item MuiGrid-grid-xs-6 MuiGrid-grid-sm-6 MuiGrid-grid-md-3 MuiGrid-grid-lg-3 css-1unik2p-MuiGrid-root"
           >
             <div
               class="MuiFormControl-root MuiTextField-root css-1u3bzj6-MuiFormControl-root-MuiTextField-root"
@@ -176,7 +176,7 @@ exports[`SearchPanel Should match the snapshot 1`] = `
                 for=":r4:"
                 id=":r4:-label"
               >
-                Departure
+                Departure date
               </label>
               <div
                 class="MuiOutlinedInput-root MuiInputBase-root MuiInputBase-colorPrimary MuiInputBase-formControl css-9ddj71-MuiInputBase-root-MuiOutlinedInput-root"
@@ -199,7 +199,7 @@ exports[`SearchPanel Should match the snapshot 1`] = `
                     class="css-1ftyaf0"
                   >
                     <span>
-                      Departure
+                      Departure date
                     </span>
                   </legend>
                 </fieldset>
@@ -207,7 +207,7 @@ exports[`SearchPanel Should match the snapshot 1`] = `
             </div>
           </div>
           <div
-            class="MuiGrid-root MuiGrid-item MuiGrid-grid-sm-12 MuiGrid-grid-md-3 MuiGrid-grid-lg-3 css-sktcqb-MuiGrid-root"
+            class="MuiGrid-root MuiGrid-item MuiGrid-grid-xs-6 MuiGrid-grid-sm-6 MuiGrid-grid-md-3 MuiGrid-grid-lg-3 css-1unik2p-MuiGrid-root"
           >
             <div
               class="MuiFormControl-root MuiTextField-root css-1u3bzj6-MuiFormControl-root-MuiTextField-root"
@@ -218,7 +218,7 @@ exports[`SearchPanel Should match the snapshot 1`] = `
                 for=":r6:"
                 id=":r6:-label"
               >
-                Return
+                Return date
               </label>
               <div
                 class="MuiOutlinedInput-root MuiInputBase-root MuiInputBase-colorPrimary MuiInputBase-formControl css-9ddj71-MuiInputBase-root-MuiOutlinedInput-root"
@@ -241,7 +241,7 @@ exports[`SearchPanel Should match the snapshot 1`] = `
                     class="css-1ftyaf0"
                   >
                     <span>
-                      Return
+                      Return date
                     </span>
                   </legend>
                 </fieldset>
@@ -250,10 +250,10 @@ exports[`SearchPanel Should match the snapshot 1`] = `
           </div>
         </div>
         <hr
-          class="MuiDivider-root MuiDivider-fullWidth MuiDivider-flexItem css-yk10cl-MuiDivider-root"
+          class="MuiDivider-root MuiDivider-fullWidth css-9mgopn-MuiDivider-root"
         />
         <div
-          class="MuiGrid-root MuiGrid-container css-1xzqqmo-MuiGrid-root"
+          class="MuiGrid-root MuiGrid-container css-k9s8p3-MuiGrid-root"
         >
           <div
             class="MuiGrid-root MuiGrid-item css-13i4rnv-MuiGrid-root"
@@ -317,7 +317,7 @@ exports[`SearchPanel Should match the snapshot 1`] = `
             </div>
           </div>
           <div
-            class="MuiGrid-root MuiGrid-item css-13i4rnv-MuiGrid-root"
+            class="MuiGrid-root MuiGrid-item MuiGrid-grid-xs-12 MuiGrid-grid-sm-12 MuiGrid-grid-md-5 MuiGrid-grid-lg-5 css-urj5pv-MuiGrid-root"
           >
             <div
               class="MuiGrid-root MuiGrid-container MuiGrid-spacing-xs-2 css-mhc70k-MuiGrid-root"
@@ -442,10 +442,10 @@ exports[`SearchPanel Should match the snapshot 1`] = `
             </div>
           </div>
           <div
-            class="MuiGrid-root css-vj1n65-MuiGrid-root"
+            class="MuiGrid-root MuiGrid-item MuiGrid-grid-xs-12 MuiGrid-grid-sm-12 MuiGrid-grid-md-1 MuiGrid-grid-lg-1 css-1dfagy3-MuiGrid-root"
           >
             <button
-              class="MuiButton-root MuiButton-outlined MuiButton-outlinedSuccess MuiButton-sizeMedium MuiButton-outlinedSizeMedium MuiButtonBase-root Mui-disabled  css-sxix9q-MuiButtonBase-root-MuiButton-root"
+              class="MuiButton-root MuiButton-outlined MuiButton-outlinedSuccess MuiButton-sizeMedium MuiButton-outlinedSizeMedium MuiButton-fullWidth MuiButtonBase-root Mui-disabled  css-iv3xlb-MuiButtonBase-root-MuiButton-root"
               data-testid="search-button"
               disabled=""
               tabindex="-1"
@@ -458,5 +458,42 @@ exports[`SearchPanel Should match the snapshot 1`] = `
       </div>
     </div>
   </header>
+  <div
+    class="MuiContainer-root MuiContainer-maxWidthLg css-1oqqzyl-MuiContainer-root"
+  >
+    <div
+      class="css-16z22n8-MuiStack-root"
+    >
+      <div
+        class="MuiGrid-root MuiGrid-container css-1pp3chc-MuiGrid-root"
+      >
+        <div
+          class="MuiGrid-root MuiGrid-item css-13i4rnv-MuiGrid-root"
+        >
+          <div
+            class="MuiPaper-root MuiPaper-outlined MuiPaper-rounded MuiCard-root css-1v5z4dq-MuiPaper-root-MuiCard-root"
+          >
+            <div
+              class="MuiCardContent-root css-46bh2p-MuiCardContent-root"
+            >
+              <div
+                class="MuiTypography-root MuiTypography-h5 MuiTypography-alignCenter css-ph2xsj-MuiTypography-root"
+              >
+                Welcome to minimalistic kiwi.com
+              </div>
+              <p
+                class="MuiTypography-root MuiTypography-body1 MuiTypography-alignCenter css-ggu1h5-MuiTypography-root"
+              >
+                To find flights between cities, please use the search panel on top!
+              </p>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div
+        class="css-1p5q5e5-MuiStack-root"
+      />
+    </div>
+  </div>
 </DocumentFragment>
 `;
