@@ -11,7 +11,6 @@ import LoadingState from '../emptyStates/LoadingState';
 
 const FlightList = () => {
     const { flightList, status } = useSelector(selectFlights);
-
     const flights = flightList?.data ? flightList.data : [];
 
     return (<Container maxWidth={'lg'}>
@@ -21,6 +20,12 @@ const FlightList = () => {
                 <EmptyState 
                     title='Welcome to minimalistic kiwi.com'
                     description='To find flights between cities, please use the search panel on top!'
+                /> : <></>
+            }
+            {(status === 'rejected') ?
+                <EmptyState
+                    title='Ups, an error might have just happened'
+                    description='Please try refreshing the page or contact me: kholjuraev@mail.ru'
                 /> : <></>
             }
             <Stack spacing={2}>

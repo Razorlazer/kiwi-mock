@@ -11,6 +11,7 @@ import FlightLandIcon from '@mui/icons-material/FlightLand';
 
 import { timeEpochUTCtoLocal } from '../../utilities/helperFunctions';
 
+//TODO: it is a bit messy here. Optimize later
 const routeBox = (route) => (
     <Grid item>
         <Grid container spacing={2} direction={'row'}>
@@ -43,22 +44,29 @@ const routeBox = (route) => (
         </Grid>
     </Grid>);
 
-const flightInfoBox = (flight, currency, price)=> {
+const flightInfoBox = ({
+    fly_duration,
+    has_airport_change,
+    airlines,
+    baglimit: { hand_weight, hold_weight }
+}, currency, price)=> {
     return <Grid container direction="row" justifyContent="center" alignItems="center" spacing={1}>
         <Grid item>
-            <Chip label={`Duration: ${flight?.fly_duration}`} variant="outlined" color="primary" />
+            <Chip label={`Duration: ${fly_duration}`} variant="outlined" color="primary" />
         </Grid>
         <Grid item>
             <Chip label={`Price: ${price} ${currency}`} variant="outlined"  color="success" />
         </Grid>
         <Grid item>
-            <Chip label={`Airport change: ${flight.has_airport_change ? 'Yes' : 'No'}`} variant="outlined"/>
+            <Chip label={`Airport change: ${has_airport_change ? 'Yes' : 'No'}`} variant="outlined"/>
         </Grid>
         <Grid item>
-            <Chip label={`Airlines: ${flight.airlines.join(', ')}`} variant="outlined" />
+            <Chip label={`Airlines: ${airlines.join(', ')}`} variant="outlined" />
         </Grid>
         <Grid item>
-            <Chip label={`Hand luggage: ${flight.baglimit.hand_weight} kg. Hold weight: ${flight.baglimit.hold_weight} kg`} variant="outlined" />
+            <Chip 
+                label={`Hand luggage: ${hand_weight || 0} kg. Hold weight: ${hold_weight || 0} kg`} variant="outlined"
+             />
         </Grid>
     </Grid>
 }

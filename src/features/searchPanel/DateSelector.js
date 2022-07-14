@@ -21,10 +21,10 @@ const DateSelector = () => {
 
     return (<>
         <Grid item lg={3} md={3} sm={6} xs={6}>
-            <DatePicker label={'Departure date'} onChange={handleFromDate}/>
+            <DatePicker label={'From date:'} onChange={handleFromDate}/>
         </Grid>
         <Grid item lg={3} md={3} sm={6} xs={6}>
-            <DatePicker label={'Return date'} onChange={handleToDate} minDate={minDate}/>
+            <DatePicker label={'To date'} onChange={handleToDate} minDate={minDate}/>
         </Grid>
     </>);
 };

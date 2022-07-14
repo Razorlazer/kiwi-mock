@@ -22,7 +22,6 @@ const DatePicker = ({ label, defaultValue = null, onChange, minDate  }) => {
                 }}
                 renderInput={(params) => <TextField {...params} />}
                 minDate={minDate}
-                disableHighlightToday={minDate}
             />
         </LocalizationProvider>
     );

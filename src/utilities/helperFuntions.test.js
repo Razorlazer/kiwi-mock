@@ -1,10 +1,13 @@
 import { 
     buildURLParams, 
+    compareDates, 
     createLocationSelectionList, 
-    timeEpochUTCtoLocal 
+    timeEpochUTCtoLocal, 
+    validateSearchParams
 } from "./helperFunctions";
 
 describe('helperFunctions', () =>{
+        //COMMENT: easy to write, more advance but more harder to read testing
         it.each`
             url            | result        
             ${{}} | ${''}
@@ -66,5 +69,40 @@ describe('helperFunctions', () =>{
         const result = timeEpochUTCtoLocal(testEpoch);
         expect(result).toEqual('20/07/2022, 22:50:00');
     });
-        
+
+    //COMMENT: exhaustive but easy to read way of testing a unit
+    it('Should return 0 when the same dates are passed', () => {
+        const shouldBeEqual = compareDates('01.01.2022', '01.01.2022');
+        expect(shouldBeEqual).toEqual(0);
+    });
+
+    it('Should return false when invalid date is passed', () => {
+        const shouldBeEqual = compareDates('test-param', '01.01.2022');
+        expect(shouldBeEqual).toEqual('Invalid date');
+    });
+
+    it('Should return -1 when first date is later', () => {
+        const shouldBeEqual = compareDates('02.01.2022', '01.01.2022');
+        expect(shouldBeEqual).toEqual(-1);
+    });
+
+    it('Should return 1 when first date is later', () => {
+        const shouldBeEqual = compareDates('02.01.2022', '01.01.2022');
+        expect(shouldBeEqual).toEqual(-1);
+    });
+    //exhaustive testing ends here
+
+    it.each`
+            params                                                                                                                              | result        
+            ${{}} | ${false}
+            ${{ departureLocation: undefined, destinationLocation: undefined, fromDate: undefined, toDate: undefined }}                         | ${false}
+            ${{ departureLocation: 'test-location-1', destinationLocation: undefined, fromDate: undefined, toDate: '01.02.2022' }}              | ${false}
+            ${{ departureLocation: 'test-location-1', destinationLocation: 'test-location-2', fromDate: '01.02.2022', toDate: undefined }}      | ${false}
+            ${{ departureLocation: 'test-location-1', destinationLocation: 'test-location-2', fromDate: '01.01.2022', toDate: '01.02.2022' }}   | ${true}
+            ${{ departureLocation: 'test-location-1', destinationLocation: 'test-location-2', fromDate: '01.02.2022', toDate: '01.02.2022' }}   | ${true}
+            ${{ departureLocation: 'test-location-1', destinationLocation: 'test-location-2', fromDate: '01.02.2022', toDate: '02.02.2022' }}   | ${true}
+        `('Should build url params using passed parameters', ({ params, result }) => {
+
+            expect(validateSearchParams(params)).toEqual(result);
+    });
 });

@@ -35,7 +35,7 @@ const BestFlights = () => {
                     icon={<AccessTime />}
                 />
                 <BottomNavigationAction
-                    label="Quality"
+                    label="Best quality"
                     value="quality"
                     icon={<ConnectingAirports />}
                 />
