@@ -32,7 +32,11 @@ const SliderWithLabel = ({ label, marks, step = 10, defaultValue = null, onChang
                         step={step}
                         valueLabelDisplay="auto"
                         onChange={(event, newValue) => {
-                            setValue(newValue);
+                            if (newValue === 0) {
+                                setSliderDisabled(true);
+                            } else {
+                                setValue(newValue);
+                            }
                         }}
                         marks={marks}
                         disabled={isSliderDisabled}
