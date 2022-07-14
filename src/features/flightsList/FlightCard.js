@@ -11,6 +11,7 @@ import FlightLandIcon from '@mui/icons-material/FlightLand';
 
 import { timeEpochUTCtoLocal } from '../../utilities/helperFunctions';
 
+//TODO: it is a bit messy here. Optimize later
 const routeBox = (route) => (
     <Grid item>
         <Grid container spacing={2} direction={'row'}>
