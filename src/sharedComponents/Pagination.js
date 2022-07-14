@@ -21,7 +21,7 @@ const Paginator = () => {
     }
 
     return <>
-        <Grid container justifyContent={'center'} alignContent={'center'} spacing={5}>
+        <Grid container justifyContent={'center'} alignContent={'center'}>
             <Grid item>
                 <ButtonGroup variant="text" aria-label="text button group">
                     <Button onClick={resetFlights} color='error'>Clear flights list</Button>
